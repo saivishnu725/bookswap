@@ -2,7 +2,7 @@
 
 the WT project
 
-install XAMPP and run the `script.bat` if you are on windows or `script.sh` on linux. then access it on http://localhost/bookswap
+install XAMPP (start the MySQL, Apache services ofc) and run the `script.bat` if you are on windows or `script.sh` on linux. then access it on http://localhost/bookswap
 
 ## License
 
