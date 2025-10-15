@@ -7,7 +7,11 @@
     <title>BookSwap</title>
 </head>
 
-<body>
+<body onload="backend/api/books.php">
+
+    <form action="./backend/api/books.php" method="post">
+        <input type="submit" value="Connect to Database">
+    </form>
 
 </body>
 
