@@ -55,7 +55,7 @@
     <br>
     <a href="profile.php"> Profile</a>
     <br>
-    <a href="logout.php">Logout</a>
+    <a href="../server/logout_process.php">Logout</a>
 </body>
 
 </html>

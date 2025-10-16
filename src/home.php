@@ -19,7 +19,7 @@
     ?>
 
     <h1>Welcome to the home page!</h1>
-    <a href="user/logout.php">Logout</a> <br>
+    <a href="server/logout_process.php">Logout</a> <br>
     <a href="user/profile.php">Profile</a>
 </body>
 
