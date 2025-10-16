@@ -13,6 +13,7 @@ $stmt = $conn->prepare($query);
 $stmt->execute([$user_id]);
 $user = $stmt->get_result()->fetch_assoc();
 if (!$user) {
+    header("Location: ../index.php");
     die("User not found");
 }
 $first_name = htmlspecialchars($user['first_name']);
