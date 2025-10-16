@@ -27,6 +27,7 @@ trust score
     <p><strong>First Name:</strong> <?php echo $first_name; ?></p>
     <p><strong>Last Name:</strong> <?php echo $last_name; ?></p>
     <p><strong>Email:</strong> <?php echo $email; ?></p>
+    <p><strong>Date of birth</strong><?php echo $date_of_birth; ?></p>
     <p><strong>College Name:</strong> <?php echo $college_name; ?></p>
     <p><strong>Phone Number:</strong> <?php echo $phone_primary; ?></p>
     <p><strong>Phone Number (secondary):</strong> <?php echo $phone_secondary; ?></p>

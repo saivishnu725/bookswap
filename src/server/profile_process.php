@@ -18,6 +18,7 @@ if (!$user) {
 $first_name = htmlspecialchars($user['first_name']);
 $last_name = htmlspecialchars($user['last_name']);
 $email = htmlspecialchars($user['email']);
+$date_of_birth = htmlspecialchars($user['date_of_birth']);
 $college_name = htmlspecialchars($user['college_name']);
 $phone_primary = htmlspecialchars($user['phone_primary']);
 $phone_secondary = htmlspecialchars($user['phone_secondary']);
