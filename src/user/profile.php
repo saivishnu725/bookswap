@@ -36,7 +36,23 @@ trust score
     <br>
     <a href="edit_profile.php">Edit profile</a>
     <br>
-    <a href="logout.php">Logout</a>
+    <a onclick="confirm_delete()" href="#">Delete user</a>
+    <br>
+    <a href="../server/logout_process.php">Logout</a>
+    <script>
+        function confirm_delete() {
+            if (confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
+                // Create a form and submit it as POST
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = '../server/delete_user_process.php';
+                document.body.appendChild(form);
+                form.submit();
+            } else {
+                alert("Account deletion canceled.");
+            }
+        }
+    </script>
 </body>
 
 </html>
