@@ -27,7 +27,7 @@ CREATE TABLE
         book_id BIGINT PRIMARY KEY AUTO_INCREMENT,
         seller_id BIGINT NOT NULL,
         book_name VARCHAR(255) NOT NULL,
-        description TEXT,
+        descr TEXT,
         `condition` ENUM ('NEW', 'GOOD', 'FAIR', 'POOR') NOT NULL,
         year_of_purchase YEAR,
         cost_at_purchase DECIMAL(10, 2),
