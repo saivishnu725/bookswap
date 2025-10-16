@@ -8,7 +8,7 @@ TITLE BookSwap Database Setup
 
 echo --- Configuration ---
 SET "MYSQL_EXECUTABLE=C:\xampp\mysql\bin\mysql.exe"
-SET "SQL_FILE=.\src\backend\database\queries.sql"
+SET "SQL_FILE=..\queries.sql"
 SET "DB_USER=root"
 
 cls

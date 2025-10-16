@@ -7,7 +7,7 @@ echo "======================================================"
 MYSQL_EXECUTABLE="/opt/lampp/bin/mysql"
 
 # Set the name of the SQL file containing the database schema
-SQL_FILE="./src/backend/database/queries.sql"
+SQL_FILE="../queries.sql"
 
 # Set the database user (default for XAMPP is 'root')
 DB_USER="root"
