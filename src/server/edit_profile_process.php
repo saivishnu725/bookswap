@@ -23,9 +23,6 @@ if ($details->num_rows === 0) {
         'phone_secondary' => trim($_POST['phone_secondary'])
     ];
 
-    $pass_new = trim($_POST['password']);
-    $pass_confirm = trim($_POST['password_confirm']);
-
     $changed = [];
 
     //  compare new vs old
@@ -33,11 +30,6 @@ if ($details->num_rows === 0) {
         if ($val !== $current[$key]) {
             $changed[$key] = $val;
         }
-    }
-
-    // handle password change
-    if (!empty($pass_new) && $pass_new === $pass_confirm) {
-        $changed['password'] = hash('sha256', $pass_new);
     }
     if (!empty($changed)) {
         $setParts = [];
@@ -61,6 +53,6 @@ if ($details->num_rows === 0) {
     <br>
     <a href="../user/profile.php">Go back to profile</a>
     <?php
-    // header("Location: ../user/profile.php");
+    header("Location: ../user/profile.php");
 }
 ?>
