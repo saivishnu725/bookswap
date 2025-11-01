@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $current_selling_price,
             $negotiable,
         ]);
-        header("Location: ../home.php");
+        header("Location: ../mybooks.php");
         exit();
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
