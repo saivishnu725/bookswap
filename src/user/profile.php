@@ -40,7 +40,7 @@ trust score
             <div class="nav-menu" id="navMenu">
                 <!-- <a href="../index.php" class="nav-link">Home</a> -->
                 <a href="../server/logout_process.php" class="nav-link">Logout</a>
-                <a href="../browse.php" class="nav-link">Browse</a>
+                <a href="../home.php" class="nav-link">Browse</a>
                 <div class="nav-auth" id="navAuth"></div>
             </div>
             <button class="mobile-toggle" id="mobileToggle">☰</button>
