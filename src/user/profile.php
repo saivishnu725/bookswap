@@ -34,7 +34,7 @@ phone number
 
     <nav class="navbar">
         <div class="nav-container">
-            <a href="index.html" class="logo">📚 BookSwap</a>
+            <a href="../index.php" class="logo">📚 BookSwap</a>
             <div class="nav-menu" id="navMenu">
                 <!-- <a href="../index.php" class="nav-link">Home</a> -->
                 <a href="../server/logout_process.php" class="nav-link">Logout</a>
