@@ -10,6 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $user_id = $_SESSION['user_id'];
     $title = $_POST['title'];
+    $author = $_POST['author'];
     $description = $_POST['description'];
     $condition = $_POST['condition'];
     $year_of_purchase = $_POST['year_of_purchase'];
@@ -19,8 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     try {
         // Insert book first
-        $sql = "INSERT INTO books (seller_id, book_name, descr, `condition`, year_of_purchase, cost_at_purchase, current_selling_price, negotiation) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO books (seller_id, book_name, descr, `condition`, year_of_purchase, cost_at_purchase, current_selling_price, negotiation, author_name) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
         $stmt->execute([
             $user_id,
@@ -31,6 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $cost_at_purchase,
             $current_selling_price,
             $negotiable,
+            $author
         ]);
 
         $book_id = $conn->insert_id;
