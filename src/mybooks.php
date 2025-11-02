@@ -54,28 +54,39 @@
                     <div class="books-grid">
                         <?php foreach ($books_array as $book): ?>
                             <div class="book-card">
-                                <!-- Book Image Placeholder -->
-                                <div class="book-image"
-                                    style="background: var(--muted); display: flex; align-items: center; justify-content: center; color: var(--muted-foreground);">
-                                    📚 No Image
-                                </div>
+                                <!-- Book Image -->
+                                <img src="<?php echo $book['image_url']; ?>" 
+                                    alt="<?php echo $book['book_name']; ?>" 
+                                    class="book-image"
+                                    onerror="this.src='./assets/images/default-book.png'">
+                                
                                 <div class="book-content">
                                     <h3 class="book-title"><?php echo $book['book_name']; ?></h3>
-                                    <p class="book-author">Description: <?php echo $book['descr']; ?></p>
+                                    <?php if (!empty($book['author_name'])): ?>
+                                        <p class="book-author">by <?php echo $book['author_name']; ?></p>
+                                    <?php endif; ?>
+                                    <p class="book-description" style="color: var(--muted-foreground); font-size: 0.9rem; margin-bottom: 0.5rem;">
+                                        <?php 
+                                        if (!empty($book['descr'])) {
+                                            echo strlen($book['descr']) > 100 ? substr($book['descr'], 0, 100) . '...' : $book['descr'];
+                                        } else {
+                                            echo 'No description available';
+                                        }
+                                        ?>
+                                    </p>
                                     <div class="book-details">
                                         <span class="book-price">₹<?php echo $book['current_selling_price']; ?></span>
                                         <span class="book-condition"><?php echo $book['condition']; ?></span>
-                                    </div>
-                                    <div class="action-buttons" style="margin-top: 1rem;">
-                                        <button class="btn btn-outline"
-                                            onclick="editBook(<?php echo $book['book_id']; ?>)">Edit</button>
-                                        <button class="btn btn-danger"
-                                            onclick="confirmDeleteBook(<?php echo $book['book_id']; ?>)">Delete</button>
                                     </div>
                                     <div style="margin-top: 0.5rem; font-size: 0.875rem; color: var(--muted-foreground);">
                                         <p>Purchase Year: <?php echo $book['year_of_purchase']; ?></p>
                                         <p>Original Cost: ₹<?php echo $book['cost_at_purchase']; ?></p>
                                         <p>Negotiable: <?php echo $book['negotiation'] === 'YES' ? 'Yes' : 'No'; ?></p>
+                                        <p>Status: <strong><?php echo $book['status']; ?></strong></p>
+                                    </div>
+                                    <div class="action-buttons" style="margin-top: 1rem;">
+                                        <button class="btn btn-outline" onclick="editBook(<?php echo $book['book_id']; ?>)">Edit</button>
+                                        <button class="btn btn-danger" onclick="confirmDeleteBook(<?php echo $book['book_id']; ?>)">Delete</button>
                                     </div>
                                 </div>
                             </div>

@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 if (!isset($_SESSION['user_id'])) {
     header("Location: ../index.php");
@@ -18,13 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $current_selling_price = $_POST['current_selling_price'];
     $negotiable = $_POST['negotiable'];
 
-    // deal with image later
-    // deal with author names
-    // first save the name in author if not exists
-    // then get the author_id and save in book_authors
-
-
     try {
+        // Insert book first
         $sql = "INSERT INTO books (seller_id, book_name, descr, `condition`, year_of_purchase, cost_at_purchase, current_selling_price, negotiation) 
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
@@ -38,7 +32,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $current_selling_price,
             $negotiable,
         ]);
-        header("Location: ../mybooks.php");
+
+        $book_id = $conn->insert_id;
+
+        // Handle image upload
+        if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+            $image = $_FILES['image'];
+
+            // Validate image
+            $allowed_types = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
+            $max_size = 5 * 1024 * 1024; // 5MB
+
+            if (in_array($image['type'], $allowed_types) && $image['size'] <= $max_size) {
+
+                // Create uploads directory if it doesn't exist
+                $upload_dir = '../assets/images/books/';
+                if (!is_dir($upload_dir)) {
+                    mkdir($upload_dir, 0755, true);
+                }
+
+                // Generate unique filename
+                $file_extension = pathinfo($image['name'], PATHINFO_EXTENSION);
+                $filename = 'book_' . $book_id . '_' . time() . '.' . $file_extension;
+                $file_path = $upload_dir . $filename;
+
+                // Move uploaded file
+                if (move_uploaded_file($image['tmp_name'], $file_path)) {
+                    // Save to database
+                    $image_url = 'assets/images/books/' . $filename;
+                    $image_sql = "INSERT INTO book_images (book_id, image_url) VALUES (?, ?)";
+                    $image_stmt = $conn->prepare($image_sql);
+                    $image_stmt->execute([$book_id, $image_url]);
+                    $image_stmt->close();
+                }
+            }
+        }
+
+        header("Location: ../home.php");
         exit();
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
@@ -47,5 +77,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header("Location: ../book/add_book.php");
     exit();
 }
-
 ?>

@@ -143,7 +143,7 @@
                 }
             }
 
-            fetch('server/home_process.php', {
+            fetch('./server/home_process.php', {
                 method: 'POST',
                 body: formData
             })
@@ -212,40 +212,38 @@
             }
 
             booksGrid.innerHTML = books.map(book => `
-                <div class="book-card">
-                    <div class="book-image" style="background: var(--muted); display: flex; align-items: center; justify-content: center; color: var(--muted-foreground); height: 200px;">
-                        📚 ${book.status === 'sold' ? 'SOLD' : 'Book Image'}
-                    </div>
-                    <div class="book-content">
-                        <h3 class="book-title">${escapeHtml(book.book_name)}</h3>
-                        <p class="book-author">by ${escapeHtml(book.first_name)} ${escapeHtml(book.last_name)}</p>
-                        <p class="book-description" style="color: var(--muted-foreground); font-size: 0.9rem; margin-bottom: 0.5rem;">
-                            ${book.descr ? escapeHtml(book.descr.substring(0, 100) + (book.descr.length > 100 ? '...' : '')) : 'No description available'}
-                        </p>
-                        <div class="book-details">
-                            <span class="book-price">₹${book.current_selling_price}</span>
-                            <span class="book-condition">${book.condition}</span>
-                        </div>
-                        <div style="margin-top: 0.5rem; font-size: 0.875rem; color: var(--muted-foreground);">
-                            <p>College: ${escapeHtml(book.college_name)}</p>
-                            <p>Negotiable: ${book.negotiation}</p>
-                        </div>
-                        <div class="action-buttons" style="margin-top: 1rem;">
-                            ${book.status === 'sold' ?
+        <div class="book-card">
+            <img src="${book.image_url}" alt="${escapeHtml(book.book_name)}" class="book-image" 
+                onerror="this.src='assets/images/default-book.png'">
+            <div class="book-content">
+                <h3 class="book-title">${escapeHtml(book.book_name)}</h3>
+                <p class="book-author">by ${escapeHtml(book.first_name)} ${escapeHtml(book.last_name)}</p>
+                <p class="book-description" style="color: var(--muted-foreground); font-size: 0.9rem; margin-bottom: 0.5rem;">
+                    ${book.descr ? escapeHtml(book.descr.substring(0, 100) + (book.descr.length > 100 ? '...' : '')) : 'No description available'}
+                </p>
+                <div class="book-details">
+                    <span class="book-price">₹${book.current_selling_price}</span>
+                    <span class="book-condition">${book.condition}</span>
+                </div>
+                <div style="margin-top: 0.5rem; font-size: 0.875rem; color: var(--muted-foreground);">
+                    <p>College: ${escapeHtml(book.college_name)}</p>
+                    <p>Negotiable: ${book.negotiation}</p>
+                </div>
+                <div class="action-buttons" style="margin-top: 1rem;">
+                    ${book.status === 'sold' ?
                     '<button class="btn btn-outline" disabled>Sold Out</button>' :
                     `<button onclick="showInterest(${book.book_id})" class="btn btn-primary">
-                                    I'm Interested
-                                </button>`
+                            I'm Interested
+                        </button>`
                 }
-                            <button onclick="viewBookDetails(${book.book_id})" class="btn btn-outline">
-                                View Details
-                            </button>
-                        </div>
-                    </div>
+                    <button onclick="viewBookDetails(${book.book_id})" class="btn btn-outline">
+                        View Details
+                    </button>
                 </div>
-            `).join('');
+            </div>
+        </div>
+    `).join('');
         }
-
         function viewBookDetails(bookId) {
             window.location.href = `book/book.php?id=${bookId}`;
         }

@@ -17,15 +17,17 @@ try {
             $book_id = intval($_POST['book_id']);
 
             $query = "SELECT 
-                        b.*,
-                        u.college_name,
-                        u.first_name,
-                        u.last_name,
-                        u.phone_primary,
-                        u.email
-                    FROM books b 
-                    JOIN users u ON b.seller_id = u.user_id 
-                    WHERE b.book_id = ?";
+                    b.*,
+                    u.college_name,
+                    u.first_name,
+                    u.last_name,
+                    u.phone_primary,
+                    u.email,
+                    COALESCE(bi.image_url, 'assets/images/default-book.png') as image_url
+                FROM books b 
+                JOIN users u ON b.seller_id = u.user_id 
+                LEFT JOIN book_images bi ON b.book_id = bi.book_id 
+                WHERE b.book_id = ?";
 
             $stmt = $conn->prepare($query);
             if (!$stmt) {

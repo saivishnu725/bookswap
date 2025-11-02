@@ -95,11 +95,12 @@
                     </select>
                 </div>
 
-                <!-- <div class="form-group">
+                <div class="form-group">
                     <label for="image" class="form-label">Book Image</label>
                     <input type="file" id="image" name="image" class="form-input" accept="image/*">
-                    <small style="color: var(--muted-foreground);">Optional: Upload a photo of your book</small>
-                </div> -->
+                    <small style="color: var(--muted-foreground);">Upload a clear photo of your book (JPG, PNG, max
+                        5MB)</small>
+                </div>
 
                 <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem; font-size: 1.1rem;">
                     Add Book to Marketplace
@@ -114,9 +115,6 @@
             <p>&copy; 2024 Student BookSwap. A peer-to-peer book exchange platform for students.</p>
         </div>
     </footer>
-
-    <script src="auth.js"></script>
-    <script src="app.js"></script>
 </body>
 
 </html>

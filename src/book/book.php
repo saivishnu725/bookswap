@@ -88,72 +88,73 @@
 
         function displayBookDetails(book) {
             document.getElementById('bookDetailsContainer').innerHTML = `
-                <div style="max-width: 800px; margin: 0 auto;">
-                    <a href="../home.php" class="btn btn-outline" style="margin-bottom: 2rem;">← Back to Browse</a>
+        <div style="max-width: 800px; margin: 0 auto;">
+            <a href="../home.php" class="btn btn-outline" style="margin-bottom: 2rem;">← Back to Browse</a>
+            
+            <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; margin-bottom: 2rem;">
+                <!-- Book Image -->
+                <div>
+                    <img src="../${book.image_url}" alt="${escapeHtml(book.book_name)}" 
+                        style="width: 100%; height: 300px; object-fit: cover; border-radius: var(--radius);"
+                        onerror="this.src='assets/images/default-book.png'">
+                </div>
+                
+                <!-- Book Info -->
+                <div>
+                    <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">${escapeHtml(book.book_name)}</h1>
+                    <p style="font-size: 1.2rem; color: var(--muted-foreground); margin-bottom: 1.5rem;">
+                        Listed by ${escapeHtml(book.first_name)} ${escapeHtml(book.last_name)} from ${escapeHtml(book.college_name)}
+                    </p>
                     
-                    <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; margin-bottom: 2rem;">
-                        <!-- Book Image -->
-                        <div>
-                            <div class="book-image" style="background: var(--muted); display: flex; align-items: center; justify-content: center; color: var(--muted-foreground); height: 300px; border-radius: var(--radius);">
-                                📚 Book Image
-                            </div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+                        <div style="background: var(--muted); padding: 1rem; border-radius: var(--radius);">
+                            <strong>Price</strong>
+                            <div style="font-size: 2rem; color: var(--primary);">₹${book.current_selling_price}</div>
                         </div>
-                        
-                        <!-- Book Info -->
-                        <div>
-                            <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">${book.book_name}</h1>
-                            <p style="font-size: 1.2rem; color: var(--muted-foreground); margin-bottom: 1.5rem;">
-                                Listed by ${book.first_name} ${book.last_name} from ${book.college_name}
-                            </p>
-                            
-                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
-                                <div style="background: var(--muted); padding: 1rem; border-radius: var(--radius);">
-                                    <strong>Price</strong>
-                                    <div style="font-size: 2rem; color: var(--primary);">₹${book.current_selling_price}</div>
-                                </div>
-                                <div style="background: var(--muted); padding: 1rem; border-radius: var(--radius);">
-                                    <strong>Condition</strong>
-                                    <div style="font-size: 1.2rem;">${book.condition}</div>
-                                </div>
-                                <div style="background: var(--muted); padding: 1rem; border-radius: var(--radius);">
-                                    <strong>Negotiable</strong>
-                                    <div style="font-size: 1.2rem;">${book.negotiation}</div>
-                                </div>
-                            </div>
-                            
-                            <div class="action-buttons">
-                                <button onclick="showInterest(${book.book_id})" class="btn btn-primary" style="padding: 1rem 2rem; font-size: 1.2rem;">
-                                    I'm Interested
-                                </button>
-                            </div>
+                        <div style="background: var(--muted); padding: 1rem; border-radius: var(--radius);">
+                            <strong>Condition</strong>
+                            <div style="font-size: 1.2rem;">${book.condition}</div>
+                        </div>
+                        <div style="background: var(--muted); padding: 1rem; border-radius: var(--radius);">
+                            <strong>Negotiable</strong>
+                            <div style="font-size: 1.2rem;">${book.negotiation}</div>
                         </div>
                     </div>
                     
-                    <!-- Book Description -->
-                    <div style="background: var(--card); padding: 2rem; border-radius: var(--radius); border: 1px solid var(--border);">
-                        <h2 style="margin-bottom: 1rem;">Description</h2>
-                        <p style="line-height: 1.6; color: var(--foreground);">${book.descr || 'No description provided.'}</p>
-                    </div>
-                    
-                    <!-- Additional Details -->
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
-                        <div style="background: var(--muted); padding: 1.5rem; border-radius: var(--radius);">
-                            <h3 style="margin-bottom: 1rem;">Purchase Details</h3>
-                            <p><strong>Year of Purchase:</strong> ${book.year_of_purchase || 'Not specified'}</p>
-                            <p><strong>Original Cost:</strong> ₹${book.cost_at_purchase || 'Not specified'}</p>
-                        </div>
-                        
-                        <div style="background: var(--muted); padding: 1.5rem; border-radius: var(--radius);">
-                            <h3 style="margin-bottom: 1rem;">Seller Information</h3>
-                            <p><strong>Name:</strong> ${book.first_name} ${book.last_name}</p>
-                            <p><strong>College:</strong> ${book.college_name}</p>
-                        </div>
+                    <div class="action-buttons">
+                        ${book.status === 'sold' ?
+                    '<button class="btn btn-outline" disabled style="padding: 1rem 2rem; font-size: 1.2rem;">Sold Out</button>' :
+                    `<button onclick="showInterest(${book.book_id})" class="btn btn-primary" style="padding: 1rem 2rem; font-size: 1.2rem;">
+                                I'm Interested
+                            </button>`
+                }
                     </div>
                 </div>
-            `;
-        }
-
-        function showInterest(bookId) {
+            </div>
+            
+            <!-- Book Description -->
+            <div style="background: var(--card); padding: 2rem; border-radius: var(--radius); border: 1px solid var(--border);">
+                <h2 style="margin-bottom: 1rem;">Description</h2>
+                <p style="line-height: 1.6; color: var(--foreground);">${book.descr ? escapeHtml(book.descr) : 'No description provided.'}</p>
+            </div>
+            
+            <!-- Additional Details -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
+                <div style="background: var(--muted); padding: 1.5rem; border-radius: var(--radius);">
+                    <h3 style="margin-bottom: 1rem;">Purchase Details</h3>
+                    <p><strong>Year of Purchase:</strong> ${book.year_of_purchase || 'Not specified'}</p>
+                    <p><strong>Original Cost:</strong> ₹${book.cost_at_purchase || 'Not specified'}</p>
+                </div>
+                
+                <div style="background: var(--muted); padding: 1.5rem; border-radius: var(--radius);">
+                    <h3 style="margin-bottom: 1rem;">Seller Information</h3>
+                    <p><strong>Name:</strong> ${escapeHtml(book.first_name)} ${escapeHtml(book.last_name)}</p>
+                    <p><strong>College:</strong> ${escapeHtml(book.college_name)}</p>
+                </div>
+            </div>
+        </div>
+    `;
+        } function showInterest(bookId) {
             if (!confirm('Express interest in this book? The seller will be notified.')) {
                 return;
             }
@@ -198,6 +199,16 @@
                     console.error('Error:', error);
                     alert('Error expressing interest: ' + error.message);
                 });
+        }
+        // Helper function to prevent XSS
+        function escapeHtml(unsafe) {
+            if (!unsafe) return '';
+            return unsafe
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
         }
     </script>
 </body>

@@ -14,8 +14,7 @@
         <div class="nav-container">
             <a href="index.php" class="logo">📚 BookSwap</a>
             <div class="nav-menu" id="navMenu">
-                <a href="index.php" class="nav-link">Home</a>
-                <a href="browse.php" class="nav-link">Browse</a>
+                <a href="home.php" class="nav-link">Browse</a>
                 <a href="mybooks.php" class="nav-link">My Books</a>
                 <a href="interested_books.php" class="nav-link">Interests</a>
                 <a href="server/logout_process.php" class="nav-link">Logout</a>
