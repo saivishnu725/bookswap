@@ -55,18 +55,17 @@
                         <?php foreach ($books_array as $book): ?>
                             <div class="book-card">
                                 <!-- Book Image -->
-                                <img src="<?php echo $book['image_url']; ?>" 
-                                    alt="<?php echo $book['book_name']; ?>" 
-                                    class="book-image"
-                                    onerror="this.src='./assets/images/default-book.png'">
-                                
+                                <img src="<?php echo $book['image_url']; ?>" alt="<?php echo $book['book_name']; ?>"
+                                    class="book-image" onerror="this.src='./assets/images/default-book.png'">
+
                                 <div class="book-content">
                                     <h3 class="book-title"><?php echo $book['book_name']; ?></h3>
                                     <?php if (!empty($book['author_name'])): ?>
                                         <p class="book-author">by <?php echo $book['author_name']; ?></p>
                                     <?php endif; ?>
-                                    <p class="book-description" style="color: var(--muted-foreground); font-size: 0.9rem; margin-bottom: 0.5rem;">
-                                        <?php 
+                                    <p class="book-description"
+                                        style="color: var(--muted-foreground); font-size: 0.9rem; margin-bottom: 0.5rem;">
+                                        <?php
                                         if (!empty($book['descr'])) {
                                             echo strlen($book['descr']) > 100 ? substr($book['descr'], 0, 100) . '...' : $book['descr'];
                                         } else {
@@ -85,8 +84,10 @@
                                         <p>Status: <strong><?php echo $book['status']; ?></strong></p>
                                     </div>
                                     <div class="action-buttons" style="margin-top: 1rem;">
-                                        <button class="btn btn-outline" onclick="editBook(<?php echo $book['book_id']; ?>)">Edit</button>
-                                        <button class="btn btn-danger" onclick="confirmDeleteBook(<?php echo $book['book_id']; ?>)">Delete</button>
+                                        <button class="btn btn-outline"
+                                            onclick="editBook(<?php echo $book['book_id']; ?>)">Edit</button>
+                                        <button class="btn btn-danger"
+                                            onclick="confirmDeleteBook(<?php echo $book['book_id']; ?>)">Delete</button>
                                     </div>
                                 </div>
                             </div>
@@ -106,9 +107,7 @@
 
     <script>
         function editBook(bookId) {
-            // Redirect to edit book page or show edit form
-            alert('Edit functionality for book ID: ' + bookId + ' will be implemented here');
-            // You can redirect to: window.location.href = 'edit_book.php?id=' + bookId;
+            window.location.href = './book/edit_book.php?id=' + bookId;
         }
 
         function confirmDeleteBook(bookId) {
