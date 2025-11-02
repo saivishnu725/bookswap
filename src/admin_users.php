@@ -128,7 +128,6 @@
                                 <th style="padding: 1rem; text-align: left; border-bottom: 1px solid var(--border);">Email</th>
                                 <th style="padding: 1rem; text-align: left; border-bottom: 1px solid var(--border);">College</th>
                                 <th style="padding: 1rem; text-align: left; border-bottom: 1px solid var(--border);">Phone</th>
-                                <th style="padding: 1rem; text-align: left; border-bottom: 1px solid var(--border);">Trust Score</th>
                                 <th style="padding: 1rem; text-align: left; border-bottom: 1px solid var(--border);">Joined</th>
                                 <th style="padding: 1rem; text-align: left; border-bottom: 1px solid var(--border);">Actions</th>
                             </tr>
@@ -143,9 +142,6 @@
                                     <td style="padding: 1rem;">${escapeHtml(user.email)}</td>
                                     <td style="padding: 1rem;">${escapeHtml(user.college_name || 'N/A')}</td>
                                     <td style="padding: 1rem;">${escapeHtml(user.phone_primary)}</td>
-                                    <td style="padding: 1rem;">
-                                        <span class="book-condition">${user.trust_score}/10</span>
-                                    </td>
                                     <td style="padding: 1rem;">${new Date(user.created_at).toLocaleDateString()}</td>
                                     <td style="padding: 1rem;">
                                         <button onclick="viewUserDetails(${user.user_id})" class="btn btn-outline" style="padding: 0.5rem 1rem;">

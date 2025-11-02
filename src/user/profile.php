@@ -6,7 +6,6 @@ first_name
 last_name
 college name
 phone number
-trust score   
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +29,6 @@ trust score
     $college_name_display = htmlspecialchars($college_name);
     $phone_primary_display = htmlspecialchars($phone_primary);
     $phone_secondary_display = htmlspecialchars($phone_secondary);
-    $trust_score_display = htmlspecialchars($trust_score);
     $date_of_birth_display = htmlspecialchars($date_of_birth);
     ?>
 
@@ -93,7 +91,7 @@ trust score
             </a>
         </div>
 
-        <hr style="margin: 2rem 0;">
+        <!-- <hr style="margin: 2rem 0;">
 
         <div class="form-container">
             <h2>Account Statistics</h2>
@@ -102,7 +100,7 @@ trust score
                 <p><?php echo $trust_score_display; ?></p>
             </div>
             <div id="accountStats"></div>
-        </div>
+        </div> -->
 
         <hr style="margin: 2rem 0;">
 

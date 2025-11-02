@@ -18,7 +18,7 @@ try {
 
             $query = "SELECT 
                         user_id, email, first_name, last_name, college_name, 
-                        phone_primary, trust_score, created_at
+                        phone_primary, created_at
                     FROM users 
                     WHERE 1=1";
 

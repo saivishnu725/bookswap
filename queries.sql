@@ -17,7 +17,6 @@ CREATE TABLE
         college_name VARCHAR(255),
         phone_primary VARCHAR(20) NOT NULL UNIQUE,
         phone_secondary VARCHAR(20),
-        trust_score INT DEFAULT 5,
         created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
     );
 

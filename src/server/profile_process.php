@@ -23,6 +23,5 @@ $date_of_birth = htmlspecialchars($user['date_of_birth']);
 $college_name = htmlspecialchars($user['college_name']);
 $phone_primary = htmlspecialchars($user['phone_primary']);
 $phone_secondary = htmlspecialchars($user['phone_secondary']);
-$trust_score = htmlspecialchars($user['trust_score']);
 
 ?>
