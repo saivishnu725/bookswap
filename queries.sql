@@ -38,7 +38,7 @@ CREATE TABLE
 
 -- 3. book images
 CREATE TABLE
-    book_images (
+    IF NOT EXISTS book_images (
         image_id BIGINT PRIMARY KEY AUTO_INCREMENT,
         book_id BIGINT NOT NULL,
         image_url VARCHAR(2048) NOT NULL,
