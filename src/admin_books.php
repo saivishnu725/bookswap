@@ -18,7 +18,7 @@
                 <a href="admin.php" class="nav-link">Dashboard</a>
                 <a href="admin_users.php" class="nav-link">Users</a>
                 <a href="admin_books.php" class="nav-link">Books</a>
-                <a href="admin_transactions.php" class="nav-link">Transactions</a>
+                <!-- <a href="admin_transactions.php" class="nav-link">Transactions</a> -->
                 <a href="server/logout_process.php" class="nav-link">Logout</a>
             </div>
             <button class="mobile-toggle" id="mobileToggle">☰</button>

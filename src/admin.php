@@ -80,18 +80,18 @@
             <div class="action-buttons">
                 <a href="admin_users.php" class="btn btn-primary">Manage Users</a>
                 <a href="admin_books.php" class="btn btn-primary">Manage Books</a>
-                <a href="admin_transactions.php" class="btn btn-primary">View Transactions</a>
+                <!-- <a href="admin_transactions.php" class="btn btn-primary">View Transactions</a> -->
             </div>
         </div>
 
         <!-- Recent Activity -->
-        <div>
+        <!-- <div>
             <h2 style="margin-bottom: 1.5rem;">Recent Activity</h2>
             <div id="recentActivity"
                 style="background: var(--card); padding: 1.5rem; border-radius: var(--radius); border: 1px solid var(--border);">
                 <div class="alert alert-info">Loading recent activity...</div>
             </div>
-        </div>
+        </div> -->
     </div>
 
     <!-- Footer -->
