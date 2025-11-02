@@ -1,53 +1,41 @@
 @echo off
 echo ======================================================
-echo  Student BookSwap Database Setup for Windows
+echo  Setting up Student BookSwap for Windows...
 echo ======================================================
 
-:: Set the path to the MySQL executable in your XAMPP installation
-set "MYSQL_EXECUTABLE=C:\xampp\mysql\bin\mysql.exe"
+:: Set the path to your project's source code
+set "PROJECT_DIR=%cd%\src"
 
-:: Set the name of the SQL file containing the database schema
-set "SQL_FILE=.\src\backend\database\queries.sql"
+:: Set the target path in XAMPP's web directory
+set "TARGET_DIR=C:\xampp\htdocs\bookswap"
 
-:: Set the database user (default for XAMPP is 'root')
-set "DB_USER=root"
-
-:: Check if the SQL file exists in the current directory
-if not exist "%SQL_FILE%" (
+:: Check if the target directory already exists
+if exist "%TARGET_DIR%" (
   echo.
-  echo The required file '%SQL_FILE%' was not found.
-  echo Please place this script in the same folder as your SQL file and run it again.
-  pause
-  exit /b
-)
-
-:: Check if the MySQL executable path is correct
-if not exist "%MYSQL_EXECUTABLE%" (
-  echo.
-  echo The MySQL client was not found at '%MYSQL_EXECUTABLE%'.
-  echo Please check your XAMPP installation path and update this script if necessary.
+  echo A folder already exists at %TARGET_DIR%.
+  echo Please remove it and run this script again.
   pause
   exit /b
 )
 
 echo.
-echo Executing database setup from: %SQL_FILE%
-echo You will be prompted for the MySQL password for user '%DB_USER%'.
-echo NOTE: For a default XAMPP setup, the password is blank. Just press Enter.
+echo Creating a link from your project folder to the XAMPP server...
+echo  Source: %PROJECT_DIR%
+echo  Target: %TARGET_DIR%
 echo.
 
-:: Execute the SQL script using input redirection
-"%MYSQL_EXECUTABLE%" -u %DB_USER% -p < "%SQL_FILE%"
+:: Create the symbolic link. Requires admin rights.
+mklink /D "%TARGET_DIR%" "%PROJECT_DIR%"
 
 if %errorlevel% neq 0 (
   echo.
-  echo FAILED! An error occurred during the database setup.
-  echo Please review the error messages above.
-) else (
+  echo FAILED! Please try running this script as an Administrator.
+  ) else (
   echo.
   echo SUCCESS!
-  echo The bookswap database and all associated tables have been created.
+  echo You can now access the project at http://localhost/bookswap
 )
 
 echo.
 pause
+
