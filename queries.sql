@@ -101,3 +101,14 @@ ADD COLUMN status ENUM ('available', 'sold') DEFAULT 'available';
 -- 9. Add author handling to books (temporary until author system is fully implemented)
 ALTER TABLE books
 ADD COLUMN author_name VARCHAR(255);
+
+-- Insert sample users
+INSERT INTO users (email, password_hash, first_name, last_name, date_of_birth, college_name, phone_primary, phone_secondary) VALUES
+('alice.johnson@university.edu', 'hashed_password_1', 'Alice', 'Johnson', '1999-05-15', 'State University', '12345677890', NULL),
+('bob.smith@college.edu', 'hashed_password_2', 'Bob', 'Smith', '2000-08-22', 'Tech College', '1234567891', '1234567892'),
+('carol.davis@university.edu', 'hashed_password_3', 'Carol', 'Davis', '1998-12-10', 'State University', '1234567893', NULL),
+('david.wilson@college.edu', 'hashed_password_4', 'David', 'Wilson', '2001-03-30', 'Tech College', '1234567894', NULL),
+('emma.brown@university.edu', 'hashed_password_5', 'Emma', 'Brown', '1999-07-18', 'State University', '1234567895', '1234567896');
+
+-- Insert sample book images with simplified URLs
+INSERT INTO book_images (book_id, image_url) VALUES (21, '1.png'), (22, '2.png'), (23, '3.png'), (24, '4.png'), (25, '5.png'), (26, '6.png'), (27, '7.png'), (28, '8.png'), (29, '9.png'), (20, '10.png'); 
